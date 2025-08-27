@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Distributed Chat</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h1>Distributed Chat logo</h1>
+          </div>
+        </div>
+      </div>
+      <div class="topleftcircle">
+        <img src="path/to/image.jpg" alt="Description" />
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="ph-form">
+              <div class="ph-form__login">
+                <h2>Email Verification</h2>
+                <p>Please enter the 4-digit code sent to your email.</p>
+              </div>
+              <form class="ph-form__verify--form">
+                <h2>Email Verification</h2>
+                <p>Please enter the 4-digit code sent to your email.</p>
+
+                <div class="ph-input-wrapper code-inputs">
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    required
+                    class="code-digit"
+                  />
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    required
+                    class="code-digit"
+                  />
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    required
+                    class="code-digit"
+                  />
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    required
+                    class="code-digit"
+                  />
+                </div>
+
+                <button type="submit">Verify</button>
+                <br /><br />
+
+                <button type="button" id="resendBtn" disabled>
+                  Resend Code (60s)
+                </button>
+              </form>
+
+              <script>
+                const inputs = document.querySelectorAll(".code-digit");
+                const resendBtn = document.getElementById("resendBtn");
+                let countdown = 60;
+                let timer;
+
+                // Only allow digits + auto move
+                inputs.forEach((input, index) => {
+                  input.addEventListener("input", (e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                    if (input.value.length === 1 && index < inputs.length - 1) {
+                      inputs[index + 1].focus();
+                    }
+                  });
+
+                  input.addEventListener("keydown", (e) => {
+                    if (e.key === "Backspace" && !input.value && index > 0) {
+                      inputs[index - 1].focus();
+                    }
+                  });
+                });
+
+                // Form validation
+                document
+                  .querySelector(".ph-form__verify--form")
+                  .addEventListener("submit", function (e) {
+                    const code = Array.from(inputs)
+                      .map((i) => i.value)
+                      .join("");
+                    if (code.length !== 4 || !/^\d{4}$/.test(code)) {
+                      e.preventDefault();
+                      alert("Please enter a valid 4-digit code.");
+                    }
+                  });
+
+                // Countdown function
+                function startCountdown() {
+                  resendBtn.disabled = true;
+                  countdown = 60;
+                  resendBtn.textContent = `Resend Code (${countdown}s)`;
+
+                  timer = setInterval(() => {
+                    countdown--;
+                    resendBtn.textContent = `Resend Code (${countdown}s)`;
+
+                    if (countdown <= 0) {
+                      clearInterval(timer);
+                      resendBtn.disabled = false;
+                      resendBtn.textContent = "Resend Code";
+                    }
+                  }, 1000);
+                }
+
+                // Start countdown on page load
+                startCountdown();
+
+                // Resend button click
+                resendBtn.addEventListener("click", () => {
+                  alert("Verification code resent to your email.");
+                  startCountdown(); // restart timer after resend
+                });
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>

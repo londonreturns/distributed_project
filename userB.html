@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User B - Distributed Chat</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+
+      .chat-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        margin: 20px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .chat-header {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .back-btn {
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+
+      .back-btn:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+        background: #f8f9fa;
+      }
+
+      .message {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      /* For User B's view: userB messages align right, userA messages align left */
+      .message.userB {
+        justify-content: flex-end;
+      }
+
+      .message.userA {
+        justify-content: flex-start;
+      }
+
+      .message-bubble {
+        max-width: 70%;
+        padding: 12px 16px;
+        border-radius: 20px;
+        position: relative;
+        word-wrap: break-word;
+      }
+
+      .message.userB .message-bubble {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border-bottom-right-radius: 5px;
+      }
+
+      .message.userA .message-bubble {
+        background: #e9ecef;
+        color: #333;
+        border-bottom-left-radius: 5px;
+      }
+
+      .message-info {
+        font-size: 0.75rem;
+        margin-top: 5px;
+        opacity: 0.7;
+      }
+
+      .message.userB .message-info {
+        text-align: right;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .message.userA .message-info {
+        text-align: left;
+        color: #666;
+      }
+
+      .chat-input {
+        padding: 1rem;
+        background: white;
+        border-top: 1px solid #dee2e6;
+      }
+
+      .input-group {
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-control {
+        border: none;
+        padding: 15px 20px;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+        border-color: transparent;
+      }
+
+      .btn-send {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border: none;
+        padding: 15px 25px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .btn-send:hover {
+        background: linear-gradient(135deg, #3e9bed 0%, #00e1ed 100%);
+        color: white;
+      }
+
+      .welcome-message {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+      }
+
+      .user-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .userA-indicator {
+        background: #f5576c;
+      }
+
+      .userB-indicator {
+        background: #00f2fe;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <a href="index.html" class="back-btn">
+          <i class="bi bi-arrow-left"></i>
+        </a>
+        <h4 class="mb-0">
+          <span class="user-indicator userB-indicator"></span>
+          User B Chat
+        </h4>
+        <small>You are chatting as User B</small>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div class="chat-messages" id="chatMessages">
+        <div class="welcome-message">
+          <i
+            class="bi bi-chat-heart"
+            style="font-size: 2rem; color: #00f2fe"
+          ></i>
+          <p><strong>Welcome User B!</strong></p>
+          <p>Start a conversation by typing a message below.</p>
+          <small class="text-muted"
+            >Your messages will appear on the right, User A's messages on the
+            left.</small
+          >
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="chat-input">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            id="messageInput"
+            placeholder="Type your message as User B..."
+            aria-label="Message"
+          />
+          <button class="btn btn-send" type="button" id="sendButton">
+            <i class="bi bi-send"></i> Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        const currentUser = "userB";
+
+        // Load existing messages from localStorage
+        loadMessages();
+
+        // Handle send button click
+        $("#sendButton").click(function () {
+          sendMessage();
+        });
+
+        // Handle Enter key press in input field
+        $("#messageInput").keypress(function (e) {
+          if (e.which === 13) {
+            sendMessage();
+          }
+        });
+
+        function sendMessage() {
+          const messageInput = $("#messageInput");
+          const message = messageInput.val().trim();
+
+          if (message) {
+            const messageData = {
+              text: message,
+              sender: currentUser,
+              timestamp: new Date().toLocaleTimeString(),
+              id: Date.now(),
+            };
+
+            console.log("Sending message:", messageData);
+
+            // Add message to local storage
+            saveMessage(messageData);
+
+            // Clear input
+            messageInput.val("");
+
+            // Use the centralized update function
+            updateMessages();
+          }
+        }
+
+        function displayMessage(messageData) {
+          const messageHtml = `
+            <div class="message ${messageData.sender}" data-sender="${
+            messageData.sender
+          }">
+              <div class="message-bubble">
+                ${messageData.text}
+                <div class="message-info">
+                  ${messageData.sender === currentUser ? "You" : "User A"} • ${
+            messageData.timestamp
+          }
+                </div>
+              </div>
+            </div>
+          `;
+
+          $("#chatMessages").append(messageHtml);
+        }
+
+        function saveMessage(messageData) {
+          let messages = JSON.parse(
+            localStorage.getItem("chatMessages") || "[]"
+          );
+          messages.push(messageData);
+          localStorage.setItem("chatMessages", JSON.stringify(messages));
+        }
+
+        function loadMessages() {
+          const messages = JSON.parse(
+            localStorage.getItem("chatMessages") || "[]"
+          );
+
+          if (messages.length > 0) {
+            // Clear welcome message
+            $("#chatMessages").empty();
+
+            messages.forEach((messageData) => {
+              displayMessage(messageData);
+            });
+
+            scrollToBottom();
+          }
+        }
+
+        function scrollToBottom() {
+          const chatMessages = $("#chatMessages");
+          chatMessages.scrollTop(chatMessages[0].scrollHeight);
+        }
+
+        // Poll for new messages from other user every 2 seconds
+        let lastMessageCount = 0;
+        let isUpdating = false; // Prevent concurrent updates
+
+        function updateMessages() {
+          if (isUpdating) return; // Prevent concurrent updates
+          isUpdating = true;
+
+          const currentMessages = JSON.parse(
+            localStorage.getItem("chatMessages") || "[]"
+          );
+
+          console.log(
+            "Updating messages - Current:",
+            currentMessages.length,
+            "Last count:",
+            lastMessageCount
+          );
+
+          // Only update if message count has actually changed
+          if (currentMessages.length !== lastMessageCount) {
+            console.log("Message count changed, reloading messages");
+
+            // Only clear if we have messages to show, otherwise keep welcome message
+            if (currentMessages.length > 0) {
+              $("#chatMessages").empty();
+
+              // Display all messages
+              currentMessages.forEach((messageData) => {
+                displayMessage(messageData);
+              });
+              scrollToBottom();
+            } else if (lastMessageCount > 0) {
+              // Only show welcome message if we had messages before
+              $("#chatMessages").html(`
+                <div class="welcome-message">
+                  <i class="bi bi-chat-heart" style="font-size: 2rem; color: #00f2fe;"></i>
+                  <p><strong>Welcome User B!</strong></p>
+                  <p>Start a conversation by typing a message below.</p>
+                  <small class="text-muted">Your messages will appear on the right, User A's messages on the left.</small>
+                </div>
+              `);
+            }
+
+            lastMessageCount = currentMessages.length;
+            console.log("Updated lastMessageCount to:", lastMessageCount);
+          }
+
+          isUpdating = false;
+        }
+
+        // Use a less aggressive polling interval
+        setInterval(updateMessages, 2000); // Check every 2 seconds
+
+        // Initialize lastMessageCount
+        const initialMessages = JSON.parse(
+          localStorage.getItem("chatMessages") || "[]"
+        );
+        lastMessageCount = initialMessages.length;
+
+        // Listen for localStorage changes (for real-time sync across tabs)
+        window.addEventListener("storage", function (e) {
+          if (e.key === "chatMessages" && !isUpdating) {
+            console.log("Storage event detected, triggering update");
+            updateMessages();
+          }
+        });
+
+        console.log("User B chat initialized");
+
+        // Add a global function to clear all messages for testing
+        window.clearAllMessages = function () {
+          localStorage.removeItem("chatMessages");
+          location.reload();
+        };
+
+        // Log current messages on load
+        const currentMessages = JSON.parse(
+          localStorage.getItem("chatMessages") || "[]"
+        );
+        console.log("Messages on load:", currentMessages);
+      });
+    </script>
+  </body>
+</html>
