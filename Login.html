@@ -23,22 +23,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+    <header class="ph-header">
       <div class="container">
         <div class="row">
-          <div class="col-6">
-            <h1>Distributed Chat logo</h1>
+          <div class="col-12">
+            <div class="ph-header__wrapper">
+              <div class="ph-header__logo">
+                <img src="assets/img/LogoWhite.png" alt="logo" />
+              </div>
+              <div class="topleftcircle">
+                <img src="assets/img/topleftcircle.png" alt="Description" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="topleftcircle">
-        <img src="path/to/image.jpg" alt="Description" />
       </div>
     </header>
     <main>
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-6">
             <div class="ph-form">
               <div class="ph-form__login">
                 <h1>Connect friends <strong>easily & quickly</strong></h1>
@@ -48,29 +52,19 @@
                 </p>
               </div>
               <div class="ph-form__login--options">
-                <p>Login with google</p>
+                <p class="ph-btn">Login with google</p>
               </div>
               <div class="ph-form__divider">
                 <span>OR</span>
               </div>
-              <form class="ph-form__login--form">
-                <div class="ph-input-wrapper">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-                <div class="ph-input-wrapper">
-                  <label for="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                  />
-                </div>
-                <button type="submit">Login</button>
-              </form>
+              <p class="ph-btn">Login with email</p>
               <div class="ph-form__login--extra">
-                <a href="#">Forgot your password?</a>
+                <p>
+                  Don't have an account?
+                  <a class="ph-btn ph-btn__link" href="RegisterPage.html"
+                    >Register</a
+                  >
+                </p>
               </div>
             </div>
           </div>

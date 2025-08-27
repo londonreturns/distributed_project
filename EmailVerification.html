@@ -24,31 +24,32 @@
   </head>
 
   <body>
-    <header>
+    <header class="ph-header">
       <div class="container">
         <div class="row">
-          <div class="col-6">
-            <h1>Distributed Chat logo</h1>
+          <div class="col-12">
+            <div class="ph-header__wrapper">
+              <div class="ph-header__logo">
+                <img src="assets/img/LogoWhite.png" alt="logo" />
+              </div>
+              <div class="topleftcircle">
+                <img src="assets/img/topleftcircle.png" alt="Description" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="topleftcircle">
-        <img src="path/to/image.jpg" alt="Description" />
       </div>
     </header>
     <main>
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-6">
             <div class="ph-form">
               <div class="ph-form__login">
                 <h2>Email Verification</h2>
                 <p>Please enter the 4-digit code sent to your email.</p>
               </div>
               <form class="ph-form__verify--form">
-                <h2>Email Verification</h2>
-                <p>Please enter the 4-digit code sent to your email.</p>
-
                 <div class="ph-input-wrapper code-inputs">
                   <input
                     type="text"
@@ -80,12 +81,19 @@
                   />
                 </div>
 
-                <button type="submit">Verify</button>
+                <button class="ph-btn ph-btn__verify" type="submit">
+                  Verify
+                </button>
                 <br /><br />
 
-                <button type="button" id="resendBtn" disabled>
+                <a
+                  href="#"
+                  id="resendBtn"
+                  onclick="void 0"
+                  class="ph-btn ph-btn__link disabled"
+                >
                   Resend Code (60s)
-                </button>
+                </a>
               </form>
 
               <script>

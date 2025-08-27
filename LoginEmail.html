@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Distributed Chat</title>
+    <title>Login - Distributed Chat</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -18,12 +18,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -44,19 +39,52 @@
         </div>
       </div>
     </header>
-    <main class="ph-indexpage">
+    <main>
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="ph-indexpage__content">
-              <img
-                class="tab-img"
-                src="assets/img/tabImg.png"
-                alt="banner image"
-              />
-              <div class="ph-indexpage__content--title">
-                <h1>Group <span>Chatter</span></h1>
-                <p>Distributed chat System</p>
+          <div class="col-6">
+            <div class="ph-form">
+              <div class="ph-form__login">
+                <h1>Connect friends <strong>easily & quickly</strong></h1>
+                <p>
+                  Our chat app is the perfect way to stay connected with friends
+                  and family.
+                </p>
+              </div>
+              <div class="ph-form__login--options">
+                <p class="ph-btn">Login with google</p>
+              </div>
+              <div class="ph-form__divider">
+                <span>OR</span>
+              </div>
+              <form class="ph-form__login--form">
+                <div class="ph-input-wrapper">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="ph-input-wrapper">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <button class="ph-btn" type="submit">Login</button>
+              </form>
+              <div class="ph-form__login--extra">
+                <p>
+                  <a class="ph-btn ph-btn__link" href="#"
+                    >Forgot your password?</a
+                  >
+                </p>
+                <p>
+                  Don't have an account?
+                  <a class="ph-btn ph-btn__link" href="RegisterPage.html"
+                    >Register</a
+                  >
+                </p>
               </div>
             </div>
           </div>

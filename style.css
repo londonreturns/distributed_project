@@ -1,5 +1,7 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #24786d;
+  color: #fff;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .chat-container {
@@ -25,3 +27,139 @@ body {
   background-color: white;
   border-top: 1px solid #dee2e6;
 }
+
+.ph-header {
+  position: relative;
+  padding: 15px;
+}
+.ph-header__logo img {
+  max-width: 100%;
+  width: 150px;
+  height: auto;
+}
+.ph-header .topleftcircle img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: auto;
+  width: 30vw;
+  z-index: -1;
+}
+
+main {
+  padding: 60px 0;
+}
+
+.ph-indexpage {
+  position: relative;
+  padding: 150px 0;
+}
+.ph-indexpage .tab-img {
+  width: 80vw;
+}
+.ph-indexpage__content {
+  position: relative;
+}
+.ph-indexpage__content--title {
+  position: absolute;
+  left: 30px;
+  bottom: 10px;
+}
+.ph-indexpage__content--title h1 {
+  font-weight: bold;
+  color: #24786d;
+  font-size: 56px;
+}
+.ph-indexpage__content--title h1 span {
+  color: #000;
+}
+.ph-indexpage__content--title P {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+form {
+  padding: 60px 0 30px;
+}
+
+.ph-input-wrapper {
+  margin-bottom: 30px;
+}
+.ph-input-wrapper label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.ph-input-wrapper input {
+  width: 100%;
+  padding: 0 12px 12px;
+  border: 0;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+.ph-input-wrapper input:focus {
+  outline: none;
+}
+.ph-input-wrapper .bi.bi-eye {
+  color: #fff;
+}
+.ph-input-wrapper.code-inputs input {
+  width: 45px;
+  text-align: center;
+}
+
+.ph-btn {
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #24786d;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.ph-btn:hover {
+  background-color: #24786d;
+  color: #fff;
+}
+.ph-btn__link {
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  font-weight: 400;
+}
+.ph-btn__link:hover {
+  text-decoration: underline;
+}
+.ph-btn__verify {
+  max-width: 195px;
+}
+
+.ph-form__divider {
+  position: relative;
+  height: 50px;
+}
+.ph-form__divider span {
+  background-color: #24786d;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ph-form__divider:before {
+  content: "";
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 20px;
+  background-color: #fff;
+  z-index: -1;
+}
+.ph-form__login--extra {
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */

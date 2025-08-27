@@ -18,27 +18,36 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+    <header class="ph-header">
       <div class="container">
         <div class="row">
-          <div class="col-6">
-            <h1>Distributed Chat logo</h1>
+          <div class="col-12">
+            <div class="ph-header__wrapper">
+              <div class="ph-header__logo">
+                <img src="assets/img/LogoWhite.png" alt="logo" />
+              </div>
+              <div class="topleftcircle">
+                <img src="assets/img/topleftcircle.png" alt="Description" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="topleftcircle">
-        <img src="path/to/image.jpg" alt="Description" />
-      </div>
     </header>
-    <main>
+    <main class="ph-main">
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-6">
             <div class="ph-form">
               <div class="ph-form__login">
                 <h1>Connect friends <strong>easily & quickly</strong></h1>
@@ -95,7 +104,7 @@
                   />
                   <button
                     type="button"
-                    class="btn btn-outline-secondary btn-sm eye-btn"
+                    class="btn btn-sm eye-btn"
                     onclick="togglePassword('password', this)"
                     style="position: absolute; right: 10px; top: 35px"
                   >
@@ -114,7 +123,7 @@
                   />
                   <button
                     type="button"
-                    class="btn btn-outline-secondary btn-sm eye-btn"
+                    class="btn btn-sm eye-btn"
                     onclick="togglePassword('repassword', this)"
                     style="position: absolute; right: 10px; top: 35px"
                   >
@@ -150,12 +159,8 @@
                     });
                 </script>
 
-                <button type="submit">Register</button>
+                <button class="ph-btn" type="submit">Register</button>
               </form>
-
-              <div class="ph-form__login--extra">
-                <a href="#">Forgot your password?</a>
-              </div>
             </div>
           </div>
         </div>

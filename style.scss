@@ -1,0 +1,174 @@
+$primary-color: #24786d;
+$white: #fff;
+
+body {
+  background-color: $primary-color;
+  color: #fff;
+  font-family: "Josefin Sans", sans-serif;
+}
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.chat-input {
+  padding: 1rem;
+  background-color: white;
+  border-top: 1px solid #dee2e6;
+}
+
+.ph-header {
+  position: relative;
+  padding: 15px;
+  &__logo {
+    img {
+      max-width: 100%;
+      width: 150px;
+      height: auto;
+    }
+  }
+
+  .topleftcircle img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: auto;
+    width: 30vw;
+    z-index: -1;
+  }
+}
+main {
+  padding: 60px 0;
+}
+.ph-indexpage {
+  position: relative;
+  padding: 150px 0;
+  .tab-img {
+    width: 80vw;
+  }
+  &__content {
+    position: relative;
+    &--title {
+      position: absolute;
+      left: 30px;
+      bottom: 10px;
+      h1 {
+        font-weight: bold;
+        color: $primary-color;
+        font-size: 56px;
+        span {
+          color: #000;
+        }
+      }
+      P {
+        font-size: 30px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+form {
+  padding: 60px 0 30px;
+}
+
+.ph-input-wrapper {
+  margin-bottom: 30px;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 12px 12px;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid $white;
+    color: $white;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  .bi.bi-eye {
+    color: $white;
+  }
+  &.code-inputs {
+    input {
+      width: 45px;
+      text-align: center;
+    }
+  }
+}
+
+.ph-btn {
+  border: 1px solid $white;
+  background-color: $white;
+  color: $primary-color;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white;
+  }
+  &__link {
+    background-color: transparent;
+    color: $white;
+    text-decoration: none;
+    border: 0;
+    padding: 0;
+    font-weight: 400;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__verify {
+    max-width: 195px;
+  }
+}
+.ph-form {
+  &__divider {
+    position: relative;
+    height: 50px;
+    span {
+      background-color: $primary-color;
+      padding: 10px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:before {
+      content: "";
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 20px;
+      background-color: $white;
+      z-index: -1;
+    }
+  }
+  &__login--extra {
+    text-align: center;
+  }
+}
